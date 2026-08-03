@@ -29,4 +29,7 @@
 .jflaneur-entry {
   padding-left: var(--indent);
 }
+.jflaneur-key {
+  &::after { content: ':'; }
+}
 
