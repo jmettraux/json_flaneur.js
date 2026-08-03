@@ -12,10 +12,12 @@
 
     <!-- TEST -->
 
-    <div id="tree">
-    </div>
+    <div id="flaneur"></div>
 
     <script defer>
+
+      var clog = console.log;
+      var cerr = console.error;
 
       let js = {
         "undefined": undefined,
@@ -85,6 +87,8 @@
         "negative_float": -2.718,
         "scientific_notation": 1.5e10,
         "zero": 0 };
+
+      js = 'Lore Ipsum';
 
       document.getElementById('flaneur')
         .appendChild(
