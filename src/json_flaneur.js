@@ -110,8 +110,10 @@ var JsonFlaneur = (function() {
 
   let makeLeafElement = function(t, js) {
 
-    return makeElt(
-      `.jflaneur-leaf.jflaneur-${t}`, JSON.stringify(js));
+    let v = JSON.stringify(js);
+    if (t === 'string') v = v.slice(1, -1);
+
+    return makeElt(`.jflaneur-leaf.jflaneur-${t}`, v);
   };
 
   let makeCollectionElement = function(t, js) {

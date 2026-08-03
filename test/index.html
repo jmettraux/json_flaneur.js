@@ -96,7 +96,10 @@
 
       //js = 'Lore Ipsum';
 
-      document.getElementById('flaneur').appendChild(JsonFlaneur.make(js));
+      let fe = JsonFlaneur.make(js);
+      //fe.classList.add('jflaneur-dark');
+
+      document.getElementById('flaneur').appendChild(fe);
     </script>
   </body>
 </html>
