@@ -90,9 +90,16 @@ var JsonFlaneur = (function() {
 
     e.appendChild(be);
 
-    for (let k in js) {
-      be.appendChild(makeKeyElement(t, k));
-      be.appendChild(makeValueElement(t, js[k]));
+    let c = (t === 'array' ? js : Object.keys(js)).length;
+    if (c > 0) {
+      for (let k in js) {
+        be.appendChild(makeKeyElement(t, k));
+        be.appendChild(makeValueElement(t, js[k]));
+      }
+    }
+    else {
+      e.classList.add('jflaneur-empty');
+      be.classList.add('jflaneur-empty');
     }
 
     return e;

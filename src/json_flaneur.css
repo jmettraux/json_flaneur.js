@@ -60,3 +60,12 @@
   background-color: var(--hilite);
 }
 
+.jflaneur-array.jflaneur-empty {
+  &::before { content: '[]'; }
+  &::after { content: ''; }
+}
+.jflaneur-object.jflaneur-empty {
+  &::before { content: '{}'; }
+  &::after { content: ''; }
+}
+
