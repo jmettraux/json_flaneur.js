@@ -68,27 +68,18 @@ var JsonFlaneur = (function() {
 
     ev.stopPropagation();
 
-    let ce = this.parentElement.parentElement
-    ce.classList.add('jflaneur-collapsed');
+    let e = this.nextElementSibling;
+    let k = 'jflaneur-collapsed';
+    let s = '.jflaneur-collection';
+    let ce = e.querySelector(s);
 
-    if (ev.shiftKey || ev.ctrlKey || ev.metaKey) {
-      for (let e of ce.querySelectorAll('.jflaneur-collection')) {
-        e.classList.add('jflaneur-collapsed');
-      }
-    }
-  };
+    if ( ! ce) return;
 
-  let collectionClick = function(ev) {
+    let ced = ce.classList.contains(k);
 
-    ev.stopPropagation();
-
-    if ( ! this.classList.contains('jflaneur-collapsed')) return;
-    this.classList.remove('jflaneur-collapsed');
-
-    if (ev.shiftKey || ev.ctrlKey || ev.metaKey) {
-      for (let e of this.querySelectorAll('.jflaneur-collapsed')) {
-        e.classList.remove('jflaneur-collapsed');
-      }
+    let es = (ev.shiftKey || ev.ctrlKey) ? e.querySelectorAll(s) : [ ce ];
+    for (let e of es) {
+      if (ced) e.classList.remove(k); else e.classList.add(k);
     }
   };
 
@@ -134,8 +125,6 @@ var JsonFlaneur = (function() {
       e.classList.add('jflaneur-empty');
       be.classList.add('jflaneur-empty');
     }
-
-    e.addEventListener('click', collectionClick.bind(e));
 
     return e;
   };
