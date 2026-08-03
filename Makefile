@@ -30,7 +30,7 @@ serve: # just for test/index.html
 	@echo "##"
 	@echo "## head for http://localhost:7080/index.html"
 	@echo "##"
-	$(RUBY) -run -ehttpd test -p7001
+	$(RUBY) -run -ehttpd test -p7080
 s: serve
 
 

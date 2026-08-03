@@ -13,6 +13,9 @@ var JsonFlaneur = (function() {
   //
   // public functions
 
+  this.makeElement = function(js) {
+  };
+
   //
   // over.
 
