@@ -5,6 +5,7 @@
   --indent: 1em;
   --gap: 0.42em;
   --grey: grey;
+  --hilite: #eeeeee;
 
   font-family: ui-monospace, monospace;
 }
@@ -51,3 +52,11 @@
 .jflaneur-undefined {
   &::before { content: '(undefined)'; color: var(--grey); }
 }
+
+.jflaneur-key:hover {
+  background-color: var(--hilite);
+}
+.jflaneur-key:hover + .jflaneur-value {
+  background-color: var(--hilite);
+}
+
