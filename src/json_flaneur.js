@@ -114,14 +114,17 @@ var JsonFlaneur = (function() {
 
     this.title = this.title || computeTitle(this);
 
-    if (
+    if ( ! (
       hasc(this, '.jflaneur-array-key') ||
       hasc(this, '.jflaneur-object-key')
-    ) {
+    )) return;
+
+    if (this.style.cursor === 'pointer') return;
+
+    let ve = this.nextElementSibling.childNodes[0];
+      //
+    if (hasc(ve, '.jflaneur-array') || hasc(ve, '.jflaneur-object')) {
       this.style.cursor = 'pointer';
-    }
-    else {
-      this.style.cursor = 'auto';
     }
   };
 
