@@ -66,15 +66,30 @@ var JsonFlaneur = (function() {
 
   let keyClick = function(ev) {
 
-    this.parentElement.parentElement.classList.add('jflaneur-collapsed');
     ev.stopPropagation();
+
+    let ce = this.parentElement.parentElement
+    ce.classList.add('jflaneur-collapsed');
+
+    if (ev.shiftKey || ev.ctrlKey || ev.metaKey) {
+      for (let e of ce.querySelectorAll('.jflaneur-collection')) {
+        e.classList.add('jflaneur-collapsed');
+      }
+    }
   };
 
   let collectionClick = function(ev) {
 
     ev.stopPropagation();
+
     if ( ! this.classList.contains('jflaneur-collapsed')) return;
     this.classList.remove('jflaneur-collapsed');
+
+    if (ev.shiftKey || ev.ctrlKey || ev.metaKey) {
+      for (let e of this.querySelectorAll('.jflaneur-collapsed')) {
+        e.classList.remove('jflaneur-collapsed');
+      }
+    }
   };
 
   let makeKeyElement = function(t, js) {
