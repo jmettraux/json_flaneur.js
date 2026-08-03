@@ -64,15 +64,23 @@ var JsonFlaneur = (function() {
     return e;
   };
 
+  let keyClick = function(ev) {
+
+    this.parentElement.parentElement.classList.add('jflaneur-collapsed');
+    ev.stopPropagation();
+  };
+
+  let collectionClick = function(ev) {
+
+    ev.stopPropagation();
+    if ( ! this.classList.contains('jflaneur-collapsed')) return;
+    this.classList.remove('jflaneur-collapsed');
+  };
+
   let makeKeyElement = function(t, js) {
 
     let e = makeElt(`.jflaneur-key.jflaneur-${t}-key`, '' + js);
-
-    e.addEventListener(
-      'click',
-      function(ev) {
-        e.parentElement.parentElement.classList.add('jflaneur-collapsed');
-        ev.stopPropagation(); });
+    e.addEventListener('click', keyClick.bind(e));
 
     return e;
   };
@@ -110,13 +118,7 @@ var JsonFlaneur = (function() {
       be.classList.add('jflaneur-empty');
     }
 
-    e.addEventListener(
-      'click',
-      function(ev) {
-        ev.stopPropagation();
-        if ( ! e.classList.contains('jflaneur-collapsed')) return;
-        e.classList.remove('jflaneur-collapsed');
-      });
+    e.addEventListener('click', collectionClick.bind(e));
 
     return e;
   };
