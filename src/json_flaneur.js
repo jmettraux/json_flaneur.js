@@ -64,15 +64,14 @@ var JsonFlaneur = (function() {
     return e;
   };
 
-  let makeKeyElement = function(js) {
+  let makeKeyElement = function(t, js) {
 
-    return makeElt(
-      `.jflaneur-leaf.jflaneur-key`, JSON.stringify(js));
+    return makeElt(`.jflaneur-key.jflaneur-${t}-key`, '' + js);
   };
 
-  let makeValueElement = function(js) {
+  let makeValueElement = function(t, js) {
 
-    let e = makeElt(`.jflaneur-value`);
+    let e = makeElt(`.jflaneur-value.jflaneur-${t}-value`);
     e.appendChild(makeElement(js));
 
     return e;
@@ -84,19 +83,17 @@ var JsonFlaneur = (function() {
       `.jflaneur-leaf.jflaneur-${t}`, JSON.stringify(js));
   };
 
-  let makeEntryElement = function(t, k, v) {
-
-    let e = makeElt(`.jflaneur-entry.jflaneur-${t}-entry`);
-    e.appendChild(makeKeyElement(k));
-    e.appendChild(makeValueElement(v));
-
-    return e;
-  };
-
   let makeCollectionElement = function(t, js) {
 
     let e = makeElt(`.jflaneur-collection.jflaneur-${t}`);
-    for (let k in js) { e.appendChild(makeEntryElement(t, k, js[k])); }
+    let be = makeElt('.jflaneur-collection-body');
+
+    e.appendChild(be);
+
+    for (let k in js) {
+      be.appendChild(makeKeyElement(t, k));
+      be.appendChild(makeValueElement(t, js[k]));
+    }
 
     return e;
   };

@@ -3,6 +3,10 @@
 
 .jflaneur {
   --indent: 1em;
+  --gap: 0.42em;
+  --grey: grey;
+
+  font-family: ui-monospace, monospace;
 }
 
 .jflaneur-collapsed {
@@ -26,10 +30,24 @@
   &::after { content: '}'; }
 }
 
-.jflaneur-entry {
-  padding-left: var(--indent);
+.jflaneur-collection {
 }
-.jflaneur-key {
-  &::after { content: ':'; }
+.jflaneur-collection-body {
+  display: grid;
+  grid-template-columns: min-content auto;
 }
 
+.jflaneur-key {
+  &::after { content: ':'; padding-right: var(--gap); }
+  padding-left: var(--indent);
+}
+.jflaneur-array-key {
+  color: var(--grey);
+}
+
+.jflaneur-value {
+}
+
+.jflaneur-undefined {
+  &::before { content: '(undefined)'; color: var(--grey); }
+}
