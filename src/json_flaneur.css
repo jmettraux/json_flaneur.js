@@ -79,11 +79,12 @@
 }
 
 .jflaneur-key {
+  padding-left: var(--indent);
+  user-select: none;
   &::after {
     content: ':';
     color: var(--punctuation-color);
     padding-right: var(--gap); }
-  padding-left: var(--indent);
 }
 .jflaneur-array-key {
   color: var(--array-key-color);
