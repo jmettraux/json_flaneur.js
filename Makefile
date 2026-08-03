@@ -1,5 +1,5 @@
 
-N = json_tree
+N != basename `pwd` '.js'
 RUBY = ruby
 VERSION != grep VERSION src/$(N).js | $(RUBY) -e "puts gets.match(/VERSION = '([\d\.]+)/)[1]"
 SHA != git log -1 --format="%h"
@@ -13,14 +13,15 @@ v:
 
 pkg_plain:
 	mkdir -p pkg
-	awk 'NF{print "// " $$0; next} {print "//"}' LICENSE.txt > pkg/$(N)-$(VERSION).js
-	awk 'NF{print "// " $$0; next} {print "//"}' LICENSE.txt > pkg/$(N)-$(VERSION).js
+	$(RUBY) mak/tools.rb LICENSE.txt slash-slash > pkg/$(N)-$(VERSION).js
+	$(RUBY) mak/tools.rb LICENSE.txt slash-star > pkg/$(N)-$(VERSION).css
 	cat src/$(N).js >> pkg/$(N)-$(VERSION).js
-	cat src/$(N).css > pkg/$(N)-$(VERSION).css
+	cat src/$(N).css >> pkg/$(N)-$(VERSION).css
 	echo "/* from commit $(SHA) on $(NOW) */" >> pkg/$(N)-$(VERSION).js
 	echo "/* from commit $(SHA) on $(NOW) */" >> pkg/$(N)-$(VERSION).css
 	cp pkg/$(N)-$(VERSION).js pkg/$(N)-$(VERSION)-$(SHA).js
 	cp pkg/$(N)-$(VERSION).css pkg/$(N)-$(VERSION)-$(SHA).css
+pkg: pkg_plain
 
 clean:
 	rm -fR pkg/
