@@ -66,7 +66,15 @@ var JsonFlaneur = (function() {
 
   let makeKeyElement = function(t, js) {
 
-    return makeElt(`.jflaneur-key.jflaneur-${t}-key`, '' + js);
+    let e = makeElt(`.jflaneur-key.jflaneur-${t}-key`, '' + js);
+
+    e.addEventListener(
+      'click',
+      function(ev) {
+        e.parentElement.parentElement.classList.add('jflaneur-collapsed');
+        ev.stopPropagation(); });
+
+    return e;
   };
 
   let makeValueElement = function(t, js) {
@@ -101,6 +109,14 @@ var JsonFlaneur = (function() {
       e.classList.add('jflaneur-empty');
       be.classList.add('jflaneur-empty');
     }
+
+    e.addEventListener(
+      'click',
+      function(ev) {
+        ev.stopPropagation();
+        if ( ! e.classList.contains('jflaneur-collapsed')) return;
+        e.classList.remove('jflaneur-collapsed');
+      });
 
     return e;
   };
