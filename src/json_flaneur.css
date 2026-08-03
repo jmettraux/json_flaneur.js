@@ -1,5 +1,24 @@
 
 /* json_flaneur.css */
 
-.json_flaneur {}
+.jflaneur-collapsed {
+  & * { display: none; }
+  &::after { content: '' !important; }
+}
+
+.jflaneur-array.jflaneur-collapsed {
+  &::before { content: '[ ... ]'; }
+}
+.jflaneur-collection.jflaneur-array {
+  &::before { content: '['; }
+  &::after { content: ']'; }
+}
+
+.jflaneur-object.jflaneur-collapsed {
+  &::before { content: '{ ... }'; }
+}
+.jflaneur-object {
+  &::before { content: '{'; }
+  &::after { content: '}'; }
+}
 

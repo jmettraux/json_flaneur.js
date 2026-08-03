@@ -67,12 +67,12 @@ var JsonFlaneur = (function() {
   let makeKeyElement = function(js) {
 
     return makeElt(
-      `.json_flaneur_leaf.json_flaneur_key`, JSON.stringify(js));
+      `.jflaneur-leaf.jflaneur-key`, JSON.stringify(js));
   };
 
   let makeValueElement = function(js) {
 
-    let e = makeElt(`.json_flaneur_value`);
+    let e = makeElt(`.jflaneur-value`);
     e.appendChild(makeElement(js));
 
     return e;
@@ -81,12 +81,12 @@ var JsonFlaneur = (function() {
   let makeLeafElement = function(t, js) {
 
     return makeElt(
-      `.json_flaneur_leaf.json_flaneur_${t}`, JSON.stringify(js));
+      `.jflaneur-leaf.jflaneur-${t}`, JSON.stringify(js));
   };
 
   let makeEntryElement = function(t, k, v) {
 
-    let e = makeElt(`.json_flaneur_entry.json_flaneur_${t}_entry`);
+    let e = makeElt(`.jflaneur-entry.jflaneur-${t}-entry`);
     e.appendChild(makeKeyElement(k));
     e.appendChild(makeValueElement(v));
 
@@ -95,7 +95,7 @@ var JsonFlaneur = (function() {
 
   let makeCollectionElement = function(t, js) {
 
-    let e = makeElt(`.json_flaneur_collection.json_flaneur_${t}`);
+    let e = makeElt(`.jflaneur-collection.jflaneur-${t}`);
     for (let k in js) { e.appendChild(makeEntryElement(t, k, js[k])); }
 
     return e;
