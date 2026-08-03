@@ -70,7 +70,7 @@ var JsonFlaneur = (function() {
 
   let computeTitle = function(e) {
 
-    let k = e.getAttribute('data-jflaneur-key');
+    let k = e.__jflaneur_key;
 
     if (e.classList.contains('jflaneur')) return '$';
 
@@ -112,8 +112,8 @@ var JsonFlaneur = (function() {
 
     let k = '' + js;
 
-    let e = makeElt(
-      `.jflaneur-key.jflaneur-${t}-key`, { 'data-jflaneur-key': k }, k)
+    let e = makeElt(`.jflaneur-key.jflaneur-${t}-key`, k)
+    e.__jflaneur_key = k;
 
     e.addEventListener('click', keyClick.bind(e));
     e.addEventListener('mouseenter', keyEnter.bind(e));
@@ -124,8 +124,10 @@ var JsonFlaneur = (function() {
   let makeValueElement = function(t, k, js) {
 
     let v = js[k];
-    let e = makeElt(
-      `.jflaneur-value.jflaneur-${t}-value`, { 'data-jflaneur-key': k });
+
+    let e = makeElt(`.jflaneur-value.jflaneur-${t}-value`);
+    e.__jflaneur_key = k;
+
     e.appendChild(makeElement(v));
 
     e.addEventListener('mouseenter', keyEnter.bind(e));
@@ -179,7 +181,7 @@ var JsonFlaneur = (function() {
 
     let e = makeElement(js);
     e.classList.add('jflaneur'); // for the variables ;-)
-    //e.setAttribute('data-jflaneur-key', '$');
+    //e.__jflaneur_key = '$';
 
     return e;
   };
