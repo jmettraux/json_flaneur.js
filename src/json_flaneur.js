@@ -10,6 +10,13 @@ var JsonFlaneur = (function() {
   //
   // protected functions
 
+  let hasc = function(elt, kla) {
+
+    if (kla.match(/^\./)) kla = kla.slice(1);
+
+    return elt && elt.classList.contains(kla);
+  }
+
   let isElt = function(o) {
 
     return (
@@ -72,13 +79,13 @@ var JsonFlaneur = (function() {
 
     let k = e.__jflaneur_key;
 
-    if (e.classList.contains('jflaneur')) return '$';
+    if (hasc(e, '.jflaneur')) return '$';
 
     let pt = computeTitle(e.parentElement); if ( ! k) return pt;
 
     let ce = e.closest('.jflaneur-collection');
 
-    return pt + (ce.classList.contains('jflaneur-array') ? `[${k}]` : `.${k}`);
+    return pt + (hasc(ce, '.jflaneur-array') ? `[${k}]` : `.${k}`);
   };
 
   let keyClick = function(ev) {
@@ -92,7 +99,7 @@ var JsonFlaneur = (function() {
 
     if ( ! ce) return;
 
-    let ced = ce.classList.contains(k);
+    let ced = hasc(ce, k);
 
     let es = (ev.shiftKey || ev.ctrlKey) ? e.querySelectorAll(s) : [ ce ];
     for (let e of es) {
@@ -106,6 +113,16 @@ var JsonFlaneur = (function() {
     ev.stopPropagation();
 
     this.title = this.title || computeTitle(this);
+
+    if (
+      hasc(this, '.jflaneur-array-key') ||
+      hasc(this, '.jflaneur-object-key')
+    ) {
+      this.style.cursor = 'pointer';
+    }
+    else {
+      this.style.cursor = 'auto';
+    }
   };
 
   let makeKeyElement = function(t, js) {
