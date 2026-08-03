@@ -36,8 +36,10 @@ var JsonFlaneur = (function() {
   }
 
   let elementFunctions = {};
+    //
   elementFunctions.jfIsEmpty = function() {
-    return this.querySelectorAll('.jflaneur-value').length === 0; };
+    return this.querySelectorAll('.jflaneur-value').length === 0;
+  };
 
   let makeElt = function(/*tag, atts, text*/) {
 
@@ -66,6 +68,19 @@ var JsonFlaneur = (function() {
     return e;
   };
 
+  let computeTitle = function(e) {
+
+    let k = e.getAttribute('data-jflaneur-key');
+
+    if (e.classList.contains('jflaneur')) return '$';
+
+    let pt = computeTitle(e.parentElement); if ( ! k) return pt;
+
+    let ce = e.closest('.jflaneur-collection');
+
+    return pt + (ce.classList.contains('jflaneur-array') ? `[${k}]` : `.${k}`);
+  };
+
   let keyClick = function(ev) {
 
     ev.stopPropagation();
@@ -86,18 +101,34 @@ var JsonFlaneur = (function() {
     }
   };
 
+  let keyEnter = function(ev) {
+
+    ev.stopPropagation();
+
+    this.title = this.title || computeTitle(this);
+  };
+
   let makeKeyElement = function(t, js) {
 
-    let e = makeElt(`.jflaneur-key.jflaneur-${t}-key`, '' + js);
+    let k = '' + js;
+
+    let e = makeElt(
+      `.jflaneur-key.jflaneur-${t}-key`, { 'data-jflaneur-key': k }, k)
+
     e.addEventListener('click', keyClick.bind(e));
+    e.addEventListener('mouseenter', keyEnter.bind(e));
 
     return e;
   };
 
-  let makeValueElement = function(t, js) {
+  let makeValueElement = function(t, k, js) {
 
-    let e = makeElt(`.jflaneur-value.jflaneur-${t}-value`);
-    e.appendChild(makeElement(js));
+    let v = js[k];
+    let e = makeElt(
+      `.jflaneur-value.jflaneur-${t}-value`, { 'data-jflaneur-key': k });
+    e.appendChild(makeElement(v));
+
+    e.addEventListener('mouseenter', keyEnter.bind(e));
 
     return e;
   };
@@ -121,7 +152,7 @@ var JsonFlaneur = (function() {
     if (c > 0) {
       for (let k in js) {
         be.appendChild(makeKeyElement(t, k));
-        be.appendChild(makeValueElement(t, js[k]));
+        be.appendChild(makeValueElement(t, k, js));
       }
     }
     else {
@@ -148,6 +179,7 @@ var JsonFlaneur = (function() {
 
     let e = makeElement(js);
     e.classList.add('jflaneur'); // for the variables ;-)
+    //e.setAttribute('data-jflaneur-key', '$');
 
     return e;
   };
