@@ -113,8 +113,14 @@ var JsonFlaneur = (function() {
   //
   // public functions
 
-  this.makeElement = makeElement;
-  this.make = makeElement;
+  this.makeElement = function(js) {
+
+    let e = makeElement(js);
+    e.classList.add('jflaneur'); // for the variables ;-)
+
+    return e;
+  };
+  this.make = this.makeElement;
 
   //
   // over.
