@@ -35,7 +35,9 @@ var JsonFlaneur = (function() {
         booleans: [], nulls: [], undefineds: [] });
   }
 
-  //let elementFunctions = {};
+  let elementFunctions = {};
+  elementFunctions.jfIsEmpty = function() {
+    return this.querySelectorAll('.jflaneur-value').length === 0; };
 
   let makeElt = function(/*tag, atts, text*/) {
 
@@ -57,9 +59,9 @@ var JsonFlaneur = (function() {
     for (let k in atts) { e.setAttribute(k, atts[k]); }
     if (typeof txt === 'string') e.innerText = txt;
 
-    //for (let fname in elementFunctions) {
-    //  e[fname] = elementFunctions[fname].bind(e);
-    //}
+    for (let fname in elementFunctions) {
+      e[fname] = elementFunctions[fname].bind(e);
+    }
 
     return e;
   };
@@ -79,6 +81,7 @@ var JsonFlaneur = (function() {
 
     let es = (ev.shiftKey || ev.ctrlKey) ? e.querySelectorAll(s) : [ ce ];
     for (let e of es) {
+      if (e.jfIsEmpty()) return;
       if (ced) e.classList.remove(k); else e.classList.add(k);
     }
   };
