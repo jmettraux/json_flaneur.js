@@ -63,7 +63,7 @@ var JsonFlaneur = (function() {
   elementFunctions.jfCollapse = function() {
 
     let args = sortArgs(arguments);
-clog('jfCollapse', this, args);
+//clog('jfCollapse', this, args);
 
     if (args.empty) {
       toggle(this.parentElement, true);
@@ -71,9 +71,34 @@ clog('jfCollapse', this, args);
     else if (args.functions.length > 0) {
       let f = args.functions[0];
       for (let e of this.querySelectorAll('.jflaneur-collection')) {
+        if (hasc(e, '.jflaneur-empty')) continue;
         addc(e, '.jflaneur-collapsed', f(e));
       }
     }
+  };
+
+  let computeDepth = function(elt) {
+
+    let ce = elt.closest('.jflaneur-collection');
+
+    return ce ? 1 + computeDepth(ce.parentElement) : -1;
+  };
+
+  elementProperties = {};
+  elementProperties.jf = {
+    get() {
+      let t = hasc(this, '.jflaneur-array') ? 'array' : 'object';
+      let ke = this.closest('.jflaneur-value').previousElementSibling;
+      let k = ke.__jflaneur_key;
+      this.__jf = this.__jf || {
+        type: t,
+        key: t === 'array' ? parseInt(k, 10) : k,
+        depth: computeDepth(this),
+        path: ke.title || computeTitle(ke),
+        length: this.childNodes[0].childNodes.length / 2 };
+      return this.__jf;
+    },
+    enumberable: false,
   };
 
   let makeElt = function(/*tag, atts, text*/) {
@@ -98,6 +123,9 @@ clog('jfCollapse', this, args);
 
     for (let fname in elementFunctions) {
       e[fname] = elementFunctions[fname].bind(e);
+    }
+    for (let pname in elementProperties) {
+      Object.defineProperty(e, pname, elementProperties[pname]);
     }
 
     return e;

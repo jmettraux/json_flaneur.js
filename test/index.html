@@ -104,7 +104,11 @@
 
       document.getElementById('flaneur').appendChild(fe);
 
-      fe.jfCollapse();
+      //fe.jfCollapse();
+      fe.jfCollapse(function(e) {
+        clog('e', e, e.jf);
+        return true;
+      });
     </script>
   </body>
 </html>
