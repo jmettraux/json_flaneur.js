@@ -229,9 +229,7 @@ var JsonFlaneur = (function() {
     return e;
   };
 
-  let makeValueElement = function(t, k, js) {
-
-    let v = js[k];
+  let makeValueElement = function(t, k, v) {
 
     let e = makeElt(`.jflaneur-value.jflaneur-${t}-value`);
     e.__jflaneur_key = k;
@@ -260,11 +258,13 @@ var JsonFlaneur = (function() {
 
     e.appendChild(be);
 
-    let c = (t === 'array' ? js : Object.keys(js)).length;
+    let o = []; for (let k in js) { o.push([ k, js[k] ]); }
+    let c = o.length;
+
     if (c > 0) {
-      for (let k in js) {
+      for (let [ k, v ] of o) {
         be.appendChild(makeKeyElement(t, k));
-        be.appendChild(makeValueElement(t, k, js));
+        be.appendChild(makeValueElement(t, k, v));
       }
       e.setAttribute(
         'data-size',
