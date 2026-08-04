@@ -104,7 +104,8 @@ var JsonFlaneur = (function() {
     let es = (ev.shiftKey || ev.ctrlKey) ? e.querySelectorAll(s) : [ ce ];
     for (let e of es) {
       if (e.jfIsEmpty()) return;
-      if (ced) e.classList.remove(k); else e.classList.add(k);
+      if (ced) { e.classList.remove(k); }
+      else { e.classList.add(k); }
     }
   };
 
@@ -176,6 +177,10 @@ var JsonFlaneur = (function() {
         be.appendChild(makeKeyElement(t, k));
         be.appendChild(makeValueElement(t, k, js));
       }
+      e.setAttribute(
+        'data-size',
+        t === 'array' ? `${c} item${c < 2 ? '' : 's'}` :
+        `${c} entr${c < 2 ? 'y' : 'ies'}`);
     }
     else {
       e.classList.add('jflaneur-empty');

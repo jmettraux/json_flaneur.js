@@ -27,6 +27,7 @@
   --undefined-color: #999999; /* grey */
 
   --punctuation-color: #000000;
+  --collapsed-color: #282828;
 
   --hilite-background-color: #eeeeee;
 }
@@ -45,6 +46,7 @@
   --undefined-color: #999999;
 
   --punctuation-color: #808080;
+  --collapsed-color: #808080;
 
   --hilite-background-color: #555555;
 }
@@ -56,7 +58,10 @@
 }
 
 .jflaneur-array.jflaneur-collapsed {
-  &::before { content: '[ ... ]' !important; }
+  &::before {
+    content: "[ .. " attr(data-size) " .. ]" !important;
+    color: var(--collapsed-color) !important;
+  }
 }
 .jflaneur-collection.jflaneur-array {
   &::before { content: '['; color: var(--punctuation-color); }
@@ -64,7 +69,10 @@
 }
 
 .jflaneur-object.jflaneur-collapsed {
-  &::before { content: '{ ... }' !important; }
+  &::before {
+    content: "{ .. " attr(data-size) " .. }" !important;
+    color: var(--collapsed-color) !important;
+  }
 }
 .jflaneur-object {
   &::before { content: '{'; color: var(--punctuation-color); }
