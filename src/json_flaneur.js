@@ -235,6 +235,7 @@ var JsonFlaneur = (function() {
 
     let e = makeElt(`.jflaneur-value.jflaneur-${t}-value`);
     e.__jflaneur_key = k;
+    e.__jflaneur_json = v;
 
     e.appendChild(makeElement(v));
 
