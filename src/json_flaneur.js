@@ -60,10 +60,12 @@ var JsonFlaneur = (function() {
 
     return this.querySelectorAll('.jflaneur-value').length === 0;
   };
-  elementFunctions.jfCollapse = function() {
+
+  let rootFunctions = {};
+    //
+  rootFunctions.jfCollapse = function() {
 
     let args = sortArgs(arguments);
-//clog('jfCollapse', this, args);
 
     let pe = this.parentElement;
 
@@ -293,6 +295,10 @@ var JsonFlaneur = (function() {
     let e = makeElement(js);
     e.classList.add('jflaneur'); // for the variables ;-)
     //e.__jflaneur_key = '$';
+
+    for (let fname in rootFunctions) {
+      e[fname] = rootFunctions[fname].bind(e);
+    }
 
     return e;
   };
