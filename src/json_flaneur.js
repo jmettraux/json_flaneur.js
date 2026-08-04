@@ -37,7 +37,7 @@ var JsonFlaneur = (function() {
 
     if (o === null) return 'null';
     if (Array.isArray(o)) return 'array';
-    if (isElt(o)) return 'elt';
+    if (isElt(o)) return 'element';
     return (typeof o);
   };
 
@@ -47,7 +47,7 @@ var JsonFlaneur = (function() {
 
     let r = args.reduce(
       function(h, e) { h[determineType(e) + 's'].push(e); return h; },
-      { strings: [], elts: [], objects: [], arrays: [], numbers: [],
+      { strings: [], elements: [], objects: [], arrays: [], numbers: [],
         booleans: [], nulls: [], undefineds: [], functions: [] });
     r.empty = (args.length < 1);
 
@@ -293,15 +293,21 @@ var JsonFlaneur = (function() {
   //
   // public functions
 
-  this.makeElement = function(js) {
+  this.makeElement = function(/* elt=null, js, opts={} */) {
+
+    let args = sortArgs(arguments);
+
+    let elt = args.elements[0];
+    let js = args.arrays.shift() || args.objects.shift();
+    let opts = args.objects.shift();
 
     let e = makeElement(js);
     addc(e, '.jflaneur'); // for the variables ;-)
     //e.__jflaneur_key = '$';
 
-    for (let fname in rootFunctions) {
-      e[fname] = rootFunctions[fname].bind(e);
-    }
+    for (let fname in rootFunctions) e[fname] = rootFunctions[fname].bind(e);
+
+    if (elt) elt.appendChild(e);
 
     return e;
   };
