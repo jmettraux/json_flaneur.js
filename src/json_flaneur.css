@@ -59,6 +59,7 @@
 
 .jflaneur-array.jflaneur-collapsed {
   &::before {
+    cursor: pointer;
     content: "[ .. " attr(data-size) " .. ]" !important;
     color: var(--collapsed-color) !important;
   }
@@ -70,6 +71,7 @@
 
 .jflaneur-object.jflaneur-collapsed {
   &::before {
+    cursor: pointer;
     content: "{ .. " attr(data-size) " .. }" !important;
     color: var(--collapsed-color) !important;
   }

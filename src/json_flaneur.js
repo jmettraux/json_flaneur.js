@@ -88,25 +88,39 @@ var JsonFlaneur = (function() {
     return pt + (hasc(ce, '.jflaneur-array') ? `[${k}]` : `.${k}`);
   };
 
-  let keyClick = function(ev) {
+  let toggle = function(elt, all) {
 
-    ev.stopPropagation();
-
-    let e = this.nextElementSibling;
     let k = 'jflaneur-collapsed';
     let s = '.jflaneur-collection';
-    let ce = e.querySelector(s);
+    let ce = elt.querySelector(s);
 
     if ( ! ce) return;
 
     let ced = hasc(ce, k);
 
-    let es = (ev.shiftKey || ev.ctrlKey) ? e.querySelectorAll(s) : [ ce ];
-    for (let e of es) {
+    for (let e of (all ? elt.querySelectorAll(s) : [ ce ])) {
+
       if (e.jfIsEmpty()) return;
+
       if (ced) { e.classList.remove(k); }
       else { e.classList.add(k); }
     }
+  };
+
+  let keyClick = function(ev) {
+
+    ev.stopPropagation();
+
+    toggle(this.nextElementSibling, ev.shiftKey || ev.ctrlKey);
+  };
+
+  let valueClick = function(ev) {
+
+    ev.stopPropagation();
+
+    if ( ! hasc(this.childNodes[0], '.jflaneur-collapsed')) return;
+
+    toggle(this, ev.shiftKey || ev.ctrlKey);
   };
 
   let keyEnter = function(ev) {
@@ -123,10 +137,11 @@ var JsonFlaneur = (function() {
     if (this.style.cursor === 'pointer') return;
 
     let ve = this.nextElementSibling.childNodes[0];
-      //
-    if (hasc(ve, '.jflaneur-array') || hasc(ve, '.jflaneur-object')) {
-      this.style.cursor = 'pointer';
-    }
+
+    if (hasc(ve, 'jflaneur-empty')) return;
+    if ( ! (hasc(ve, 'jflaneur-array') || hasc(ve, 'jflaneur-object'))) return;
+
+    this.style.cursor = 'pointer';
   };
 
   let makeKeyElement = function(t, js) {
@@ -151,6 +166,7 @@ var JsonFlaneur = (function() {
 
     e.appendChild(makeElement(v));
 
+    e.addEventListener('click', valueClick.bind(e));
     e.addEventListener('mouseenter', keyEnter.bind(e));
 
     return e;
