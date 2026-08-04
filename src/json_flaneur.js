@@ -65,12 +65,14 @@ var JsonFlaneur = (function() {
     let args = sortArgs(arguments);
 //clog('jfCollapse', this, args);
 
+    let pe = this.parentElement;
+
     if (args.empty) {
-      toggle(this.parentElement, true);
+      toggle(pe, true);
     }
     else if (args.functions.length > 0) {
       let f = args.functions[0];
-      for (let e of this.querySelectorAll('.jflaneur-collection')) {
+      for (let e of pe.querySelectorAll('.jflaneur-collection')) {
         if (hasc(e, '.jflaneur-empty')) continue;
         addc(e, '.jflaneur-collapsed', f(e));
       }
@@ -88,13 +90,14 @@ var JsonFlaneur = (function() {
   elementProperties.jf = {
     get() {
       let t = hasc(this, '.jflaneur-array') ? 'array' : 'object';
-      let ke = this.closest('.jflaneur-value').previousElementSibling;
-      let k = ke.__jflaneur_key;
+      let ve = this.closest('.jflaneur-value');
+      let ke = ve && ve.previousElementSibling;
+      let k = ke && ke.__jflaneur_key;
       this.__jf = this.__jf || {
         type: t,
-        key: t === 'array' ? parseInt(k, 10) : k,
+        key: k && (t === 'array' ? parseInt(k, 10) : k),
         depth: computeDepth(this),
-        path: ke.title || computeTitle(ke),
+        path: ke && (ke.title || computeTitle(ke)),
         length: this.childNodes[0].childNodes.length / 2 };
       return this.__jf;
     },
