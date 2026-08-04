@@ -119,7 +119,7 @@ var JsonFlaneur = (function() {
     let e = document.createElement(tagname);
       //
     for (let ic of m) {
-      if (ic.match(/^\./)) e.classList.add(ic.slice(1));
+      if (ic.match(/^\./)) addc(e, ic);
       else if (ic.match(/^#/)) e.id = ic.slice(1);
     }
       //
@@ -161,10 +161,9 @@ var JsonFlaneur = (function() {
 
     for (let e of (all ? elt.querySelectorAll(s) : [ ce ])) {
 
-      if (e.jfIsEmpty()) return;
+      if (e.jfIsEmpty()) continue;
 
-      if (ced) { e.classList.remove(k); }
-      else { e.classList.add(k); }
+      addc(e, k, ! ced);
     }
 
     window.getSelection().removeAllRanges();
@@ -269,8 +268,8 @@ var JsonFlaneur = (function() {
         `${c} entr${c < 2 ? 'y' : 'ies'}`);
     }
     else {
-      e.classList.add('jflaneur-empty');
-      be.classList.add('jflaneur-empty');
+      addc(e, '.jflaneur-empty');
+      addc(be, '.jflaneur-empty');
     }
 
     e.addEventListener('click', collectionClick.bind(e));
@@ -293,7 +292,7 @@ var JsonFlaneur = (function() {
   this.makeElement = function(js) {
 
     let e = makeElement(js);
-    e.classList.add('jflaneur'); // for the variables ;-)
+    addc(e, '.jflaneur'); // for the variables ;-)
     //e.__jflaneur_key = '$';
 
     for (let fname in rootFunctions) {
