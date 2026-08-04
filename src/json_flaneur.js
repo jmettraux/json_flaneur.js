@@ -123,6 +123,13 @@ var JsonFlaneur = (function() {
     toggle(this, ev.shiftKey || ev.ctrlKey);
   };
 
+  let collectionClick = function(ev) {
+
+    ev.stopPropagation();
+
+    toggle(this.parentElement, ev.shiftKey || ev.ctrlKey);
+  };
+
   let keyEnter = function(ev) {
 
     ev.stopPropagation();
@@ -202,6 +209,8 @@ var JsonFlaneur = (function() {
       e.classList.add('jflaneur-empty');
       be.classList.add('jflaneur-empty');
     }
+
+    e.addEventListener('click', collectionClick.bind(e));
 
     return e;
   };

@@ -65,8 +65,13 @@
   }
 }
 .jflaneur-collection.jflaneur-array {
-  &::before { content: '['; color: var(--punctuation-color); }
-  &::after { content: ']'; color: var(--punctuation-color); }
+  &::before {
+    cursor: pointer;
+    content: '[';
+    color: var(--punctuation-color); }
+  &::after {
+    content: ']';
+    color: var(--punctuation-color); }
 }
 
 .jflaneur-object.jflaneur-collapsed {
@@ -77,8 +82,11 @@
   }
 }
 .jflaneur-object {
-  &::before { content: '{'; color: var(--punctuation-color); }
-  &::after { content: '}'; color: var(--punctuation-color); }
+  &::before {
+    cursor: pointer;
+    content: '{'; color: var(--punctuation-color); }
+  &::after {
+    content: '}'; color: var(--punctuation-color); }
 }
 
 .jflaneur-collection {
