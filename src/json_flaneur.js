@@ -57,8 +57,10 @@ var JsonFlaneur = (function() {
   let elementFunctions = {};
     //
   elementFunctions.jfIsEmpty = function() {
-
     return this.querySelectorAll('.jflaneur-value').length === 0;
+  };
+  elementFunctions.jfHasAny = function() {
+    return this.querySelectorAll('.jflaneur-value').length > 0;
   };
 
   let rootFunctions = {};
@@ -160,10 +162,7 @@ var JsonFlaneur = (function() {
     let ced = hasc(ce, k);
 
     for (let e of (all ? elt.querySelectorAll(s) : [ ce ])) {
-
-      if (e.jfIsEmpty()) continue;
-
-      addc(e, k, ! ced);
+      if (e.jfHasAny()) addc(e, k, ! ced);
     }
 
     window.getSelection().removeAllRanges();
