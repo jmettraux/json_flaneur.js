@@ -10,12 +10,19 @@ var JsonFlaneur = (function() {
   //
   // protected functions
 
+  let slic = function(kla) { return kla.match(/^\./) ? kla.slice(1) : kla; }
+
   let hasc = function(elt, kla) {
 
-    if (kla.match(/^\./)) kla = kla.slice(1);
-
-    return elt && elt.classList.contains(kla);
+    return elt && elt.classList.contains(slic(kla));
   }
+
+  let addc = function(elt, kla, add=true) {
+
+    if ( ! isElt(elt)) return;
+    if (add) elt.classList.add(slic(kla));
+    else elt.classList.remove(slic(kla));
+  };
 
   let isElt = function(o) {
 
@@ -36,16 +43,37 @@ var JsonFlaneur = (function() {
 
   let sortArgs = function(args) {
 
-    return Array.from(args).reduce(
+    args = Array.from(args);
+
+    let r = args.reduce(
       function(h, e) { h[determineType(e) + 's'].push(e); return h; },
       { strings: [], elts: [], objects: [], arrays: [], numbers: [],
-        booleans: [], nulls: [], undefineds: [] });
+        booleans: [], nulls: [], undefineds: [], functions: [] });
+    r.empty = (args.length < 1);
+
+    return r;
   }
 
   let elementFunctions = {};
     //
   elementFunctions.jfIsEmpty = function() {
+
     return this.querySelectorAll('.jflaneur-value').length === 0;
+  };
+  elementFunctions.jfCollapse = function() {
+
+    let args = sortArgs(arguments);
+clog('jfCollapse', this, args);
+
+    if (args.empty) {
+      toggle(this.parentElement, true);
+    }
+    else if (args.functions.length > 0) {
+      let f = args.functions[0];
+      for (let e of this.querySelectorAll('.jflaneur-collection')) {
+        addc(e, '.jflaneur-collapsed', f(e));
+      }
+    }
   };
 
   let makeElt = function(/*tag, atts, text*/) {
