@@ -105,6 +105,8 @@ var JsonFlaneur = (function() {
       if (ced) { e.classList.remove(k); }
       else { e.classList.add(k); }
     }
+
+    window.getSelection().removeAllRanges();
   };
 
   let keyClick = function(ev) {
