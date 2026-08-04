@@ -136,8 +136,6 @@
 
 .jflaneur-string {
   color: var(--string-color);
-  &::before { content: '"'; color: var(--punctuation-color); }
-  &::after { content: '"'; color: var(--punctuation-color); }
 }
 
 .jflaneur-number {
