@@ -256,7 +256,9 @@ var JsonFlaneur = (function() {
 
     e.appendChild(be);
 
-    let o = []; for (let k in js) { o.push([ k, js[k] ]); }
+    let o = [];
+    for (let k in js) { if (js.hasOwnProperty(k)) o.push([ k, js[k] ]); }
+
     let c = o.length;
 
     if (c > 0) {
