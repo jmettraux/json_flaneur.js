@@ -109,9 +109,6 @@
   color: var(--object-key-color);
 }
 
-.jflaneur-value {
-}
-
 .jflaneur-undefined {
   &::before { content: 'undefined'; color: var(--undefined-color); }
 }
@@ -119,7 +116,7 @@
 .jflaneur-key:hover {
   background-color: var(--hilite-background-color);
 }
-.jflaneur-key:hover + .jflaneur-value {
+.jflaneur-key:hover + .jflaneur-val {
   background-color: var(--hilite-background-color);
 }
 

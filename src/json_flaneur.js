@@ -62,10 +62,10 @@ var JsonFlaneur = (function() {
   let elementFunctions = {};
     //
   elementFunctions.jfIsEmpty = function() {
-    return this.querySelectorAll('.jflaneur-value').length === 0;
+    return this.querySelectorAll('.jflaneur-val').length === 0;
   };
   elementFunctions.jfHasAny = function() {
-    return this.querySelectorAll('.jflaneur-value').length > 0;
+    return this.querySelectorAll('.jflaneur-val').length > 0;
   };
 
   let rootFunctions = {};
@@ -102,7 +102,7 @@ var JsonFlaneur = (function() {
   elementProperties.jf = {
     get() {
       let t = hasc(this, '.jflaneur-array') ? 'array' : 'object';
-      let ve = this.closest('.jflaneur-value');
+      let ve = this.closest('.jflaneur-val');
       let ke = ve && ve.previousElementSibling;
       let ka = ke && hasc(ke, '.jflaneur-array-key');
       let k = ke && ke.__jflaneur_key;
@@ -185,7 +185,7 @@ var JsonFlaneur = (function() {
     toggle(this.nextElementSibling, ev.shiftKey || ev.ctrlKey);
   };
 
-  let valueClick = function(ev) {
+  let valClick = function(ev) {
 
     ev.stopPropagation();
 
@@ -235,15 +235,15 @@ var JsonFlaneur = (function() {
     return e;
   };
 
-  let makeValueElement = function(t, k, v) {
+  let makeValElement = function(t, k, v) {
 
-    let e = makeElt(`.jflaneur-value.jflaneur-${t}-value`);
+    let e = makeElt(`.jflaneur-val.jflaneur-${t}-val`);
     e.__jflaneur_key = k;
     e.__jflaneur_json = v;
 
     e.appendChild(makeElement(v));
 
-    e.addEventListener('click', valueClick.bind(e));
+    e.addEventListener('click', valClick.bind(e));
     e.addEventListener('mouseenter', keyEnter.bind(e));
 
     return e;
@@ -269,7 +269,7 @@ var JsonFlaneur = (function() {
     if (c > 0) {
       for (let [ k, v ] of o) {
         be.appendChild(makeKeyElement(t, k));
-        be.appendChild(makeValueElement(t, k, v));
+        be.appendChild(makeValElement(t, k, v));
       }
       e.setAttribute(
         'data-size',
