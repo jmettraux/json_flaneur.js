@@ -170,6 +170,7 @@ var JsonFlaneur = (function() {
     }
 
     window.getSelection().removeAllRanges();
+      // remove any spurious text selection...
   };
 
   let keyClick = function(ev) {
