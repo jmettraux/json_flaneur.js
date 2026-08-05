@@ -64,7 +64,7 @@
     color: var(--collapsed-color) !important;
   }
 }
-.jflaneur-collection.jflaneur-array {
+.jflaneur-com.jflaneur-array {
   &::before {
     cursor: pointer;
     content: '[';
@@ -89,9 +89,7 @@
     content: '}'; color: var(--punctuation-color); }
 }
 
-.jflaneur-collection {
-}
-.jflaneur-collection-body {
+.jflaneur-com-body {
   display: grid;
   grid-template-columns: min-content auto;
 }

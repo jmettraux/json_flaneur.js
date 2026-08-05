@@ -7,6 +7,11 @@ var JsonFlaneur = (function() {
 
   let self = this;
 
+  // "com" is short for "composite"
+  //
+  // "cable" is short for "collapsable"
+  // "ced" is short for "collapsed"
+
   //
   // protected functions
 
@@ -79,7 +84,7 @@ var JsonFlaneur = (function() {
 
       let f = args.functions[0];
 
-      for (let e of pe.querySelectorAll('.jflaneur-collection')) {
+      for (let e of pe.querySelectorAll('.jflaneur-com')) {
         if (hasc(e, '.jflaneur-empty')) continue;
         addc(e, '.jflaneur-collapsed', f(e));
       }
@@ -88,7 +93,7 @@ var JsonFlaneur = (function() {
 
   let computeDepth = function(elt) {
 
-    let ce = elt.closest('.jflaneur-collection');
+    let ce = elt.closest('.jflaneur-com');
 
     return ce ? 1 + computeDepth(ce.parentElement) : -1;
   };
@@ -150,7 +155,7 @@ var JsonFlaneur = (function() {
 
     let pt = computeTitle(e.parentElement); if ( ! k) return pt;
 
-    let ce = e.closest('.jflaneur-collection');
+    let ce = e.closest('.jflaneur-com');
 
     return pt + (hasc(ce, '.jflaneur-array') ? `[${k}]` : `.${k}`);
   };
@@ -158,7 +163,7 @@ var JsonFlaneur = (function() {
   let toggle = function(elt, all) {
 
     let k = 'jflaneur-collapsed';
-    let s = '.jflaneur-collection';
+    let s = '.jflaneur-com';
     let ce = elt.querySelector(s);
 
     if ( ! ce) return;
@@ -189,7 +194,7 @@ var JsonFlaneur = (function() {
     toggle(this, ev.shiftKey || ev.ctrlKey);
   };
 
-  let collectionClick = function(ev) {
+  let comClick = function(ev) {
 
     ev.stopPropagation();
 
@@ -249,10 +254,10 @@ var JsonFlaneur = (function() {
     return makeElt(`.jflaneur-leaf.jflaneur-${t}`, JSON.stringify(js));
   };
 
-  let makeCollectionElement = function(t, js) {
+  let makeComElement = function(t, js) {
 
-    let e = makeElt(`.jflaneur-collection.jflaneur-${t}`);
-    let be = makeElt('.jflaneur-collection-body');
+    let e = makeElt(`.jflaneur-com.jflaneur-${t}`);
+    let be = makeElt('.jflaneur-com-body');
 
     e.appendChild(be);
 
@@ -276,7 +281,7 @@ var JsonFlaneur = (function() {
       addc(be, '.jflaneur-empty');
     }
 
-    e.addEventListener('click', collectionClick.bind(e));
+    e.addEventListener('click', comClick.bind(e));
 
     return e;
   };
@@ -284,7 +289,7 @@ var JsonFlaneur = (function() {
   let makeElement = function(js) {
 
     let t = determineType(js);
-    if (t === 'array' || t === 'object') return makeCollectionElement(t, js)
+    if (t === 'array' || t === 'object') return makeComElement(t, js)
     if (t) return makeLeafElement(t, js);
 
     throw new Error(`JsonFlaneur: cannot make element out of ${typeof js}`);
