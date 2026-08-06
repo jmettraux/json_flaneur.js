@@ -9,7 +9,7 @@ var JsonFlaneur = (function() {
 
   // "com" is short for "composite"
   //
-  // "cable" is short for "collapsable"
+  // "kable" is short for "collapsable"
   // "ked" is short for "collapsed"
 
   //
@@ -252,7 +252,7 @@ var JsonFlaneur = (function() {
   let makeStringElement = function(t, js) {
 
     return makeElt(
-      '.jflaneur-sca.jflaneur-string.jflaneur-cable', JSON.stringify(js));
+      '.jflaneur-sca.jflaneur-string.jflaneur-kable', JSON.stringify(js));
   };
 
   let makeLeafElement = function(t, js) {
@@ -263,7 +263,7 @@ var JsonFlaneur = (function() {
 
   let makeComElement = function(t, js) {
 
-    let e = makeElt(`.jflaneur-com.jflaneur-${t}.jflaneur-cable`);
+    let e = makeElt(`.jflaneur-com.jflaneur-${t}.jflaneur-kable`);
     let be = makeElt('.jflaneur-com-body');
 
     e.appendChild(be);
