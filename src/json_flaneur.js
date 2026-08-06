@@ -252,13 +252,13 @@ var JsonFlaneur = (function() {
   let makeStringElement = function(t, js) {
 
     return makeElt(
-      '.jflaneur-leaf.jflaneur-string.jflaneur-cable', JSON.stringify(js));
+      '.jflaneur-sca.jflaneur-string.jflaneur-cable', JSON.stringify(js));
   };
 
   let makeLeafElement = function(t, js) {
 
     return makeElt(
-      `.jflaneur-leaf.jflaneur-${t}`, JSON.stringify(js));
+      `.jflaneur-sca.jflaneur-${t}`, JSON.stringify(js));
   };
 
   let makeComElement = function(t, js) {
