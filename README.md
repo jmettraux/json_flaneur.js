@@ -71,14 +71,25 @@ Inspired by the excellent [summerstyle/JsonTreeViewer](https://github.com/summer
         "negative_float": -2.718,
         "scientific_notation": 1.5e10,
         "text": `
-Aeneadum genetrix, hominum divomque voluptas, alma Venus, caeli subter labentia signa quae mare navigerum, quae terras frugiferentis concelebras, per te quoniam genus omne animantum concipitur visitque exortum lumina solis: te, dea, te fugiunt venti, te nubila caeli adventumque tuum, tibi suavis daedala tellus summittit flores, tibi rident aequora ponti placatumque nitet diffuso lumine caelum.
+Aeneadum genetrix, hominum divomque voluptas, alma Venus, caeli subter labentia
+signa quae mare navigerum, quae terras frugiferentis concelebras, per te
+quoniam genus omne animantum concipitur visitque exortum lumina solis: te, dea,
+te fugiunt venti, te nubila caeli adventumque tuum, tibi suavis daedala tellus
+summittit flores, tibi rident aequora ponti placatumque nitet diffuso lumine
+caelum.
 
-Nam simul ac species patefactast verna diei et reserata viget genitabilis aura favoni, aeriae primum volucris te, diva, tuumque significant initum perculsae corda tua vi.  Inde ferae pecudes persultant pabula laeta et rapidos tranant amnis: ita capta lepore te sequitur cupide quo quamque inducere pergis.  Denique per maria ac montis fluviosque rapacis frondiferasque domos avium camposque virentis omnibus incutiens blandum per pectora amorem efficis ut cupide generatim saecla propagent.
+Nam simul ac species patefactast verna diei et reserata viget genitabilis aura
+favoni, aeriae primum volucris te, diva, tuumque significant initum perculsae
+corda tua vi.  Inde ferae pecudes persultant pabula laeta et rapidos tranant
+amnis: ita capta lepore te sequitur cupide quo quamque inducere pergis.
+Denique per maria ac montis fluviosque rapacis frondiferasque domos avium
+camposque virentis omnibus incutiens blandum per pectora amorem efficis ut
+cupide generatim saecla propagent.
           `.trim(),
         "zero": 0 };
 
       let fe = JsonFlaneur.make(js);
-      //fe.classList.add('jflaneur-dark');
+      fe.classList.add('jflaneur-dark');
 
       document.getElementById('flaneur').appendChild(fe);
 
@@ -94,6 +105,10 @@ Nam simul ac species patefactast verna diei et reserata viget genitabilis aura f
   </body>
 </html>
 ```
+
+This is rendered like this:
+
+![JsonFlaneur rendering example](doc/flaneur.png)
 
 
 ## LICENSE
