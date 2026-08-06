@@ -79,14 +79,6 @@ quoniam genus omne animantum concipitur visitque exortum lumina solis: te, dea,
 te fugiunt venti, te nubila caeli adventumque tuum, tibi suavis daedala tellus
 summittit flores, tibi rident aequora ponti placatumque nitet diffuso lumine
 caelum.
-
-Nam simul ac species patefactast verna diei et reserata viget genitabilis aura
-favoni, aeriae primum volucris te, diva, tuumque significant initum perculsae
-corda tua vi.  Inde ferae pecudes persultant pabula laeta et rapidos tranant
-amnis: ita capta lepore te sequitur cupide quo quamque inducere pergis.
-Denique per maria ac montis fluviosque rapacis frondiferasque domos avium
-camposque virentis omnibus incutiens blandum per pectora amorem efficis ut
-cupide generatim saecla propagent.
           `.trim(),
         "zero": 0 };
 
