@@ -84,7 +84,7 @@ var JsonFlaneur = (function() {
 
       let f = args.functions[0];
 
-      for (let e of pe.querySelectorAll('.jflaneur-com')) {
+      for (let e of pe.querySelectorAll('.jflaneur-kable')) {
         if (hasc(e, '.jflaneur-empty')) continue;
         addc(e, '.jflaneur-ked', f(e));
       }
@@ -162,8 +162,8 @@ var JsonFlaneur = (function() {
 
   let toggle = function(elt, all) {
 
-    let k = 'jflaneur-ked';
-    let s = '.jflaneur-com';
+    let k = '.jflaneur-ked';
+    let s = '.jflaneur-kable';
     let ce = elt.querySelector(s);
 
     if ( ! ce) return;
@@ -171,7 +171,7 @@ var JsonFlaneur = (function() {
     let ked = hasc(ce, k);
 
     for (let e of (all ? elt.querySelectorAll(s) : [ ce ])) {
-      if (e.jfHasAny()) addc(e, k, ! ked);
+      if (hasc(e, '.jflaneur-string') || e.jfHasAny()) addc(e, k, ! ked);
     }
 
     window.getSelection().removeAllRanges();
@@ -216,8 +216,8 @@ var JsonFlaneur = (function() {
 
     let ve = this.nextElementSibling.childNodes[0];
 
-    if (hasc(ve, 'jflaneur-empty')) return;
-    if ( ! (hasc(ve, 'jflaneur-array') || hasc(ve, 'jflaneur-object'))) return;
+    if ( ! hasc(ve, 'jflaneur-kable')) return;
+    if (hasc(ve, '.jflaneur-empty')) return;
 
     this.style.cursor = 'pointer';
   };
