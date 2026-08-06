@@ -60,7 +60,7 @@
 .jflaneur-array.jflaneur-ked {
   &::before {
     cursor: pointer;
-    content: "[ .. " attr(data-size) " .. ]" !important;
+    content: "[ \2026  " attr(data-size) " \2026  ]" !important;
     color: var(--collapsed-color) !important;
   }
 }
@@ -77,7 +77,7 @@
 .jflaneur-object.jflaneur-ked {
   &::before {
     cursor: pointer;
-    content: "{ .. " attr(data-size) " .. }" !important;
+    content: "{ \2026  " attr(data-size) " \2026  }" !important;
     color: var(--collapsed-color) !important;
   }
 }
