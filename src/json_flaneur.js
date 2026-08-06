@@ -10,7 +10,7 @@ var JsonFlaneur = (function() {
   // "com" is short for "composite"
   //
   // "cable" is short for "collapsable"
-  // "ced" is short for "collapsed"
+  // "ked" is short for "collapsed"
 
   //
   // protected functions
@@ -86,7 +86,7 @@ var JsonFlaneur = (function() {
 
       for (let e of pe.querySelectorAll('.jflaneur-com')) {
         if (hasc(e, '.jflaneur-empty')) continue;
-        addc(e, '.jflaneur-collapsed', f(e));
+        addc(e, '.jflaneur-ked', f(e));
       }
     }
   };
@@ -162,16 +162,16 @@ var JsonFlaneur = (function() {
 
   let toggle = function(elt, all) {
 
-    let k = 'jflaneur-collapsed';
+    let k = 'jflaneur-ked';
     let s = '.jflaneur-com';
     let ce = elt.querySelector(s);
 
     if ( ! ce) return;
 
-    let ced = hasc(ce, k);
+    let ked = hasc(ce, k);
 
     for (let e of (all ? elt.querySelectorAll(s) : [ ce ])) {
-      if (e.jfHasAny()) addc(e, k, ! ced);
+      if (e.jfHasAny()) addc(e, k, ! ked);
     }
 
     window.getSelection().removeAllRanges();
@@ -189,7 +189,7 @@ var JsonFlaneur = (function() {
 
     ev.stopPropagation();
 
-    if ( ! hasc(this.childNodes[0], '.jflaneur-collapsed')) return;
+    if ( ! hasc(this.childNodes[0], '.jflaneur-ked')) return;
 
     toggle(this, ev.shiftKey || ev.ctrlKey);
   };
@@ -256,7 +256,7 @@ var JsonFlaneur = (function() {
 
   let makeComElement = function(t, js) {
 
-    let e = makeElt(`.jflaneur-com.jflaneur-${t}`);
+    let e = makeElt(`.jflaneur-com.jflaneur-${t}.jflaneur-cable`);
     let be = makeElt('.jflaneur-com-body');
 
     e.appendChild(be);

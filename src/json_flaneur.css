@@ -57,7 +57,7 @@
   background-color: var(--background-color); /* :-) */
 }
 
-.jflaneur-array.jflaneur-collapsed {
+.jflaneur-array.jflaneur-ked {
   &::before {
     cursor: pointer;
     content: "[ .. " attr(data-size) " .. ]" !important;
@@ -74,7 +74,7 @@
     color: var(--punctuation-color); }
 }
 
-.jflaneur-object.jflaneur-collapsed {
+.jflaneur-object.jflaneur-ked {
   &::before {
     cursor: pointer;
     content: "{ .. " attr(data-size) " .. }" !important;
@@ -143,7 +143,7 @@
   color: var(--null-color);
 }
 
-.jflaneur-collapsed {
+.jflaneur-ked {
   & * { display: none; }
   &::after { content: '' !important; }
 }
