@@ -249,9 +249,16 @@ var JsonFlaneur = (function() {
     return e;
   };
 
+  let makeStringElement = function(t, js) {
+
+    return makeElt(
+      '.jflaneur-leaf.jflaneur-string.jflaneur-cable', JSON.stringify(js));
+  };
+
   let makeLeafElement = function(t, js) {
 
-    return makeElt(`.jflaneur-leaf.jflaneur-${t}`, JSON.stringify(js));
+    return makeElt(
+      `.jflaneur-leaf.jflaneur-${t}`, JSON.stringify(js));
   };
 
   let makeComElement = function(t, js) {
@@ -290,6 +297,7 @@ var JsonFlaneur = (function() {
 
     let t = determineType(js);
     if (t === 'array' || t === 'object') return makeComElement(t, js)
+    if (t === 'string') return makeStringElement(t, js);
     if (t) return makeLeafElement(t, js);
 
     throw new Error(`JsonFlaneur: cannot make element out of ${typeof js}`);

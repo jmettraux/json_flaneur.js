@@ -148,3 +148,13 @@
   &::after { content: '' !important; }
 }
 
+.jflaneur-string.jflaneur-ked {
+  max-height: 1lh;
+  max-width: 80ch;
+  overflow-x: clip;
+  text-overflow: ellipsis;
+  overflow-y: hidden;
+  white-space: nowrap;
+  /*word-wrap: break-word;*/
+}
+
