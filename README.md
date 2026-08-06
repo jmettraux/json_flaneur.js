@@ -17,6 +17,8 @@ Inspired by the excellent [summerstyle/JsonTreeViewer](https://github.com/summer
     <script src="src/json_flaneur.js"></script>
 
     <link rel="stylesheet" href="reset.css">
+      <!-- http://meyerweb.com/eric/tools/css/reset/ v2.0 | 20110126 -->
+
     <link rel="stylesheet" href="src/json_flaneur.css">
 
     <style>
@@ -106,9 +108,11 @@ cupide generatim saecla propagent.
 </html>
 ```
 
-This is rendered like this:
+This gets rendered like this on my local Chrome:
 
 ![JsonFlaneur rendering example](doc/flaneur.png)
+
+(Opened a few of the items to show nesting)
 
 
 ## LICENSE
