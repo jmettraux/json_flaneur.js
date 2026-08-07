@@ -51,6 +51,14 @@
   --hilite-background-color: #555555;
 }
 
+.jflaneur.jflaneur-key-right { /* justifies object keys to the right */
+
+  .jflaneur-object-key {
+
+    justify-self: right;
+  }
+}
+
 /* actual CSS */
 
 .jflaneur {
@@ -104,9 +112,11 @@
 }
 .jflaneur-array-key {
   color: var(--array-key-color);
+  justify-self: right;
 }
 .jflaneur-object-key {
   color: var(--object-key-color);
+  /* justify-self: right; */
 }
 
 .jflaneur-undefined {
