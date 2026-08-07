@@ -59,6 +59,18 @@
   }
 }
 
+.jflaneur.jflaneur-key-indent { /* justifies object keys to the right */
+
+  .jflaneur-object-body {
+    display: block !important;
+  }
+  .jflaneur-object-key {
+  }
+  .jflaneur-object-val {
+    padding-left: calc(2 * var(--indent));
+  }
+}
+
 /* actual CSS */
 
 .jflaneur {

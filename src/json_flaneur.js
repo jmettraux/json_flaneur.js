@@ -264,7 +264,7 @@ var JsonFlaneur = (function() {
   let makeComElement = function(t, js) {
 
     let e = makeElt(`.jflaneur-com.jflaneur-${t}.jflaneur-kable`);
-    let be = makeElt('.jflaneur-com-body');
+    let be = makeElt(`.jflaneur-com-body.jflaneur-${t}-body`);
 
     e.appendChild(be);
 
