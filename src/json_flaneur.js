@@ -313,12 +313,14 @@ var JsonFlaneur = (function() {
     let elt = args.elements[0];
     let js = args.arrays.shift() || args.objects.shift();
     let opts = args.objects.shift();
+    let clas = args.strings.filter(e => e.match(/^\.[a-z][-_a-z0-9]*/));
 
     let e = makeElement(js);
     addc(e, '.jflaneur'); // for the variables ;-)
     //e.__jflaneur_key = '$';
 
-    for (let fname in rootFunctions) e[fname] = rootFunctions[fname].bind(e);
+    for (let fn in rootFunctions) { e[fn] = rootFunctions[fn].bind(e); }
+    for (let cla of clas) { addc(e, cla); }
 
     if (elt) elt.appendChild(e);
 
