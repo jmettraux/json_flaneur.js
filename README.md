@@ -107,6 +107,30 @@ This gets rendered like this on my local Chrome:
 (Opened a few of the items to show nesting)
 
 
+## themes
+
+The default theme is "light".
+
+![JsonFlaneur default theme](doc/light.png)
+
+
+### `.jflaneur-dark`
+
+TODO
+
+### `.jflaneur-key-right`
+
+TODO
+
+### `.jflaneur-key-indent`
+
+TODO
+
+## `jfCollapse()`
+
+TODO
+
+
 ## LICENSE
 
 MIT, see [LICENSE.txt](LICENSE.txt)
