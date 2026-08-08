@@ -5,6 +5,17 @@ Taking a stroll down a JSON tree.
 
 Inspired by the excellent [summerstyle/JsonTreeViewer](https://github.com/summerstyle/jsonTreeViewer).
 
+> One can be an intellectual without being a nerd, provided one has a private
+> library instead of a classroom, and spends time as an aimless (but rational)
+> flâneur benefiting from what randomness can give us inside and outside the
+> library. Provided we have the right type of rigor, we need randomness, mess,
+> adventures, uncertainty, self-discovery, near-traumatic episodes, all these
+> things that make life worth living, compared to the structured, fake, and
+> ineffective.
+>
+> Taleb, Nassim Nicholas. _Antifragile: Things That Gain from Disorder_.
+> New York: Random House, 2012.
+
 ## usage
 
 ```html
