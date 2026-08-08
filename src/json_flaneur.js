@@ -313,10 +313,17 @@ var JsonFlaneur = (function() {
     let elt = args.elements[0];
     let js = args.arrays.shift() || args.objects.shift();
     let opts = args.objects.shift();
-    let clas = args.strings.filter(e => e.match(/^\.[a-z][-_a-z0-9]*/));
     let fun = args.functions.shift();
 
+    let clas = [].concat(
+      args.strings
+        .filter(e => e.match(/^\.[a-z][-_a-z0-9]*$/)),
+      args.strings
+        .filter(e => e.match(/^-[a-z][-_a-z0-9]*$/))
+        .map(e => `.jflaneur${e}`));
+
     let e = makeElement(js);
+
     addc(e, '.jflaneur'); // for the variables ;-)
     //e.__jflaneur_key = '$';
 
