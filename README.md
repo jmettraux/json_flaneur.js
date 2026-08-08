@@ -107,6 +107,47 @@ This gets rendered like this on my local Chrome:
 (Opened a few of the items to show nesting)
 
 
+## `JsonFlaneur.make()`
+
+```js
+let fe = JsonFlaneur.make(js);
+  // or
+let fe = JsonFlaneur.make(parentElt, js);
+  // or
+let fe = JsonFlaneur.make(parentElt, js, '.jflaneur-dark');
+```
+
+The order of those `make()` argument does not matter, as long as at least an array or an object is given.
+
+Passing a element makes JsonFlaneur append the flaneur element it makes to that parent element:
+
+```js
+let fe = JsonFlaneur.make(js);
+document.getElementById('flaneur').appendChild(fe);
+  //
+  // --shorter-->
+  //
+let fe = JsonFlaneur.make(document.getElementById('flaneur'), js);
+```
+
+Passing a class name (roughly a string that starts with a `dot`) makes JsonFlaneur add the class to the flaneur element it makes:
+
+```js
+let fe = JsonFlaneur.make(js);
+fe.classList.add('jflaneur-dark');
+document.getElementById('flaneur').appendChild(fe);
+  //
+  // --shorter-->
+  //
+JsonFlaneur.make(document.getElementById('flaneur'), js, '.jflaneur-dark');
+```
+
+
+## `jfCollapse()`
+
+TODO
+
+
 ## themes
 
 The default theme is "light".
@@ -116,17 +157,13 @@ The default theme is "light".
 
 ### `.jflaneur-dark`
 
-TODO
+The theme `.jflaneur-dark` is shown in the top screenshot above.
 
 ### `.jflaneur-key-right`
 
 TODO
 
 ### `.jflaneur-key-indent`
-
-TODO
-
-## `jfCollapse()`
 
 TODO
 
