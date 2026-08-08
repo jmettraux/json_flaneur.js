@@ -106,18 +106,28 @@ omnis enim per se divum natura necessest immortali aevo summa cum pace fruatur s
 
       //js = 'Lore Ipsum';
 
-      let fe = JsonFlaneur.make(js);
+      //let fe = JsonFlaneur.make(js);
       //fe.classList.add('jflaneur-dark');
       //fe.classList.add('jflaneur-key-indent');
 
-      document.getElementById('flaneur').appendChild(fe);
+      //document.getElementById('flaneur').appendChild(fe);
 
       //fe.jfCollapse();
-      fe.jfCollapse(function(e) {
-//clog(e.jf);
-        if (e.jf.depth === 0) return false;
-        return true;
-      });
+      //fe.jfCollapse(function(e) {
+      //  //clog(e.jf);
+      //  if (e.jf.depth === 0) return false;
+      //  return true;
+      //});
+
+      JsonFlaneur.make(
+        document.getElementById('flaneur'),
+        js,
+        '.jflaneur-dark',
+        function(e) {
+          if (e.jf.depth === 0) return false;
+          //if (e.jf.depth === 1) return false;
+          return true;
+        });
     </script>
   </body>
 </html>

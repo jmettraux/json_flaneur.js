@@ -314,6 +314,7 @@ var JsonFlaneur = (function() {
     let js = args.arrays.shift() || args.objects.shift();
     let opts = args.objects.shift();
     let clas = args.strings.filter(e => e.match(/^\.[a-z][-_a-z0-9]*/));
+    let fun = args.functions.shift();
 
     let e = makeElement(js);
     addc(e, '.jflaneur'); // for the variables ;-)
@@ -323,6 +324,8 @@ var JsonFlaneur = (function() {
     for (let cla of clas) { addc(e, cla); }
 
     if (elt) elt.appendChild(e);
+
+    if (fun) e.jfCollapse(fun);
 
     return e;
   };
