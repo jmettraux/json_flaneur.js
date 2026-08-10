@@ -153,9 +153,11 @@ document.getElementById('flaneur').appendChild(fe);
   // --shorter-->
   //
 JsonFlaneur.make(document.getElementById('flaneur'), js, '.jflaneur-dark');
+  // or
+JsonFlaneur.make(document.getElementById('flaneur'), js, '-dark');
 ```
 
-It is OK to pass multiple class names.
+It is OK to pass multiple class names. If the a string like `'-dark'` is passed, JsonFlaneur will just add `'.jflaneur'` in front of it and add this class.
 
 Pass a function and it's fed to the `jfCollapse()` of the root `.jflaneur` element.
 
