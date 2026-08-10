@@ -120,6 +120,8 @@ This gets rendered like this on my local Chrome:
 
 ## `JsonFlaneur.make()`
 
+Makes a `div.jflaneur` renders the given JSON (object or array) in it and returns the just made `div` element.
+
 ```js
 let fe = JsonFlaneur.make(js);
   // or
@@ -155,12 +157,43 @@ JsonFlaneur.make(document.getElementById('flaneur'), js, '.jflaneur-dark');
 
 It is OK to pass multiple class names.
 
+Pass a function and it's fed to the `jfCollapse()` of the root `.jflaneur` element.
+
 `JsonFlaneur.make()` returns the flaneur element it just made.
 
 
 ## `jfCollapse()`
 
-TODO
+Excepts a function that takes a node and returns `true` or `false`. On `true` collapses the node, on `false` un-collapses it.
+
+```js
+  fe.jfCollapse(function(e) {
+    console.log(e.jf);
+    if (e.jf.depth === 0) return false; // keep uncollapsed
+    return true; // collapse
+  });
+```
+
+Here are example values yield by `e.jf`. In the example above everything at depth 0 keeps open, while the other node (deeper) get collapsed.
+
+```js
+{ type: "object", key: null, depth: 0, length: 21, path: null }
+{ type: "object", key: 0, depth: 1, length: 0, path: "$.mixed_array[0]" }
+{ type: "object", key: "key", depth: 2, length: 0, path: "$.mixed_array[6].key" }
+```
+
+As mentionned above, one can pass a function directly to `JasonFlaneur.make()` and it will be fed to the root element own `jfCollapse()` function.
+
+```js
+JsonFlaneur.make(
+  document.getElementById('flaneur'),
+  js,
+  '.jflaneur-dark',
+  function(e) {
+    //console.log(e.jf);
+    if (e.jf.depth === 0) return false; /* keep uncollapsed */
+    return true; /* collapse */ });
+```
 
 
 ## what JSON
