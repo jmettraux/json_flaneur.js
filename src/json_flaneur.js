@@ -306,13 +306,17 @@ var JsonFlaneur = (function() {
   //
   // public functions
 
+  const NO_JSON = {
+    _explanation_:
+      "please pass an array or an object to JasonFlaneur.make(); ;-)" };
+
   this.makeElement = function(/* elt=null, js, opts={} */) {
 
     let args = sortArgs(arguments);
 
     let elt = args.elements[0];
-    let js = args.arrays.shift() || args.objects.shift();
-    let opts = args.objects.shift();
+    let js = args.arrays.shift() || args.objects.shift() || NO_JSON;
+    //let opts = args.objects.shift(); // TODO
     let fun = args.functions.shift();
 
     let clas = [].concat(
