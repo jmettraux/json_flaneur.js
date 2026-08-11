@@ -216,7 +216,14 @@ The theme `.jflaneur-dark` is shown in the top screenshot above.
 
 ### `.jflaneur-key-right`
 
-TODO
+```js
+JsonFlaneur.make(rootElt, js, '.jflaneur-dark', '.jflaneur-key-right');
+  // or
+JsonFlaneur.make(rootElt, js, '-dark', '-key-right');
+```
+
+![JsonFlaneur .jflaneur-dark .jflaneur-key-right](doc/key_right.png)
+
 
 ### `.jflaneur-key-indent`
 
