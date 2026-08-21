@@ -200,7 +200,9 @@ JsonFlaneur.make(
 
 ## what JSON
 
-TODO undefined ok
+JasonFlaneur is meant to render JSON data trees as HTML collapsible trees, for easy browsing. It accepts regular JSON, rooted in an object or an array.
+
+`undefined` is not part of the [JSON spec](json.org) but JsonFlaneur does not care and renders it as some kind of `null`.
 
 
 ## themes
