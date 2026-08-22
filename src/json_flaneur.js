@@ -72,9 +72,9 @@ var JsonFlaneur = (function() {
   elementFunctions.jfHasAny = function() {
     return this.querySelectorAll('.jflaneur-val').length > 0;
   };
-  elementFunctions.jfReveal = function() {
+  elementFunctions.jfDoReveal = function() {
     if (hasc(this, '.jflaneur-ked')) addc(this, '.jflaneur-ked', false);
-    let r = this.parentElement.jfReveal;
+    let r = this.parentElement.jfDoReveal;
     if (typeof r == 'function') r();
   };
   elementFunctions.jfMatch = function(q) {
@@ -105,22 +105,25 @@ var JsonFlaneur = (function() {
       }
     }
   };
-  rootFunctions.jfToggle = function() {
+  rootFunctions.jfReveal = function() {
 
-// TODO at first, close all
     let pe = this.parentElement;
     let args = sortArgs(arguments);
 
     let q = args.strings[0];
 
     if ( ! q)
-      throw new Error('JsonFlaneur: jfToggle() given no string argument');
+      throw new Error('JsonFlaneur: jfReveal() given no string argument');
 
-    let qors = q.split(/[|;]/).map(e => e.trim());
-clog('jfToggle()', this, JSON.stringify(qors));
+    let qors = q.split(/\s+/).map(e => e.trim());
+clog('jfReveal()', this, JSON.stringify(qors));
+
+    for (let e of pe.querySelectorAll('.jflaneur-kable')) {
+      addc(e, '.jflaneur-ked');
+    }
 
     for (let e of pe.querySelectorAll('.jflaneur-val')) {
-      for (let q of qors) { if (e.jfMatch(q)) e.jfReveal(); }
+      for (let q of qors) { if (e.jfMatch(q)) e.jfDoReveal(); }
     }
   };
 
@@ -415,11 +418,11 @@ clog('jfToggle()', this, JSON.stringify(qors));
     e.jfCollapse.apply(e, Array.from(arguments));
   };
 
-  this.toggle = function() {
+  this.reveal = function() {
 
     let e = document.body.querySelector('.jflaneur');
 
-    e.jfToggle.apply(e, Array.from(arguments));
+    e.jfReveal.apply(e, Array.from(arguments));
   };
 
   //
