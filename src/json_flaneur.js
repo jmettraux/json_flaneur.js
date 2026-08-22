@@ -96,6 +96,13 @@ var JsonFlaneur = (function() {
     }
   };
 
+  rootFunctions.jfToggle = function() {
+
+    let args = sortArgs(arguments);
+
+clog('jfToggle()', args);
+  };
+
   let computeDepth = function(elt) {
 
     let ce = elt.closest('.jflaneur-com');
@@ -379,6 +386,20 @@ var JsonFlaneur = (function() {
     return e;
   };
   this.make = this.makeElement;
+
+  this.collapse = function() {
+
+    let e = document.body.querySelector('.jflaneur');
+
+    e.jfCollapse.apply(e, Array.from(arguments));
+  };
+
+  this.toggle = function() {
+
+    let e = document.body.querySelector('.jflaneur');
+
+    e.jfToggle.apply(e, Array.from(arguments));
+  };
 
   //
   // over.
