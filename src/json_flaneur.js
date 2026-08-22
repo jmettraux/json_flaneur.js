@@ -72,14 +72,25 @@ var JsonFlaneur = (function() {
   elementFunctions.jfHasAny = function() {
     return this.querySelectorAll('.jflaneur-val').length > 0;
   };
+  elementFunctions.jfDig = function() {
+    // TODO
+    // if this matches return [ self ];
+    // else returns all the children that match...
+  };
+  elementFunctions.jfReveal = function() {
+    // TODO
+    // open this, then open the parent composite :-)
+    if (hasc(this, '.jflaneur-ked')) addc(this, '.jflaneur-ked', false);
+    if ( ! this.parentElement.jfReveal) return;
+    this.parentElement.jfReveal();
+  };
 
   let rootFunctions = {};
     //
   rootFunctions.jfCollapse = function() {
 
-    let args = sortArgs(arguments);
-
     let pe = this.parentElement;
+    let args = sortArgs(arguments);
 
     if (args.empty) {
 
@@ -95,12 +106,25 @@ var JsonFlaneur = (function() {
       }
     }
   };
-
   rootFunctions.jfToggle = function() {
 
     let args = sortArgs(arguments);
 
-clog('jfToggle()', args);
+    let q = args.strings[0];
+
+    if ( ! q)
+      throw new Error('JsonFlaneur: jfToggle() given no string argument');
+
+    let qors = q.split(/[|;]/).map(e => e.trim());
+clog('jfToggle()', this, JSON.stringify(qors));
+
+    let cbe = this.querySelector('.jflaneur-com-body');
+
+    
+
+    //this.jfCollapse(function(e) {
+    //  return ! qors.find(function(qands) {
+    //    return qands.every(function(qand) { return ! match(e, qand); }); }); });
   };
 
   let computeDepth = function(elt) {
