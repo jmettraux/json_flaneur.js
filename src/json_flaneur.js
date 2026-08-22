@@ -155,9 +155,7 @@ var JsonFlaneur = (function() {
   let queryToggle = function(ev) {
     ev.stopPropagation();
     let jfe = ev.target.closest('.jflaneur');
-    let qe = jfe.querySelector('.jflaneur-query');
-    console.log('qt', ev, qe);
-    togc(qe, '.open');
+    togc(jfe, '.jflaneur-query-open');
   };
   let queryChange = function(ev) {
     ev.stopPropagation();

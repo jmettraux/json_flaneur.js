@@ -201,7 +201,11 @@
   background-color: var(--query-input-background-color);
   display: none;
 }
-.jflaneur-query.open input {
+.jflaneur-query-open .jflaneur-query {
+ top: 0;
+ left: calc(2 * var(--indent));
+}
+.jflaneur-query-open .jflaneur-query input {
   display: inline-block;
 }
 .jflaneur-query .jflaneur-q {
