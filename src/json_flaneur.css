@@ -29,6 +29,10 @@
   --collapsed-color:   #000000;
 
   --hilite-background-color: #e8e8e8;
+
+  --query-color: black;
+  --query-input-color: black;
+  --query-input-background-color: transparent;
 }
 
 .jflaneur.jflaneur-dark { /* dark theme */
@@ -49,6 +53,10 @@
   --collapsed-color: #808080;
 
   --hilite-background-color: #555555;
+
+  --query-color: lightgrey;
+  --query-input-color: white;
+  /*--query-input-background-color: transparent;*/
 }
 
 .jflaneur.jflaneur-key-right { /* justifies object keys to the right */
@@ -75,6 +83,7 @@
 
 .jflaneur {
   background-color: var(--background-color); /* :-) */
+  position: relative;
 }
 
 .jflaneur-array.jflaneur-ked {
@@ -178,5 +187,29 @@
   overflow-y: hidden;
   white-space: nowrap;
   /*word-wrap: break-word;*/
+}
+
+.jflaneur-query {
+  color: var(--query-color);
+  position: absolute;
+  /*top: 0.6lh;*/
+  top: 0.2lh;
+  left: var(--indent);
+}
+.jflaneur-query input {
+  color: var(--query-input-color);
+  background-color: var(--query-input-background-color);
+  display: none;
+}
+.jflaneur-query.open input {
+  display: inline-block;
+}
+.jflaneur-query .jflaneur-q {
+  cursor: pointer;
+  display: inline-block;
+  margin-left: 0.21em;
+  font-size: 180%;
+  transform: scaleX(-1);
+  color: var(--punctuation-color);
 }
 

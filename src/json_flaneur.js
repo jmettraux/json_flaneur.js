@@ -29,6 +29,11 @@ var JsonFlaneur = (function() {
     else elt.classList.remove(slic(kla));
   };
 
+  let togc = function(elt, kla) {
+
+    addc(elt, kla, ! hasc(elt, kla));
+  };
+
   let isElt = function(o) {
 
     return (
@@ -143,6 +148,39 @@ var JsonFlaneur = (function() {
     for (let pname in elementProperties) {
       Object.defineProperty(e, pname, elementProperties[pname]);
     }
+
+    return e;
+  };
+
+  let queryToggle = function(ev) {
+    ev.stopPropagation();
+    let jfe = ev.target.closest('.jflaneur');
+    let qe = jfe.querySelector('.jflaneur-query');
+    console.log('qt', ev, qe);
+    togc(qe, '.open');
+  };
+  let queryChange = function(ev) {
+    ev.stopPropagation();
+    console.log('qc', 'TODO', ev);
+  };
+
+  let makeQueryElt = function() {
+
+    let e = makeElt('.jflaneur-query');
+
+    let ie = makeElt('input', { type: 'text' });
+    //ie.style.display = 'none';
+
+    let qe = makeElt('.jflaneur-q', '⌕');
+
+    e.appendChild(ie);
+    e.appendChild(qe);
+
+    for (let n of [ 'keyup', 'change', 'focus', 'blur', 'click' ]) {
+      ie.addEventListener(n, queryChange);
+    }
+
+    qe.addEventListener('click', queryToggle);
 
     return e;
   };
@@ -337,6 +375,8 @@ var JsonFlaneur = (function() {
     if (elt) elt.appendChild(e);
 
     if (fun) e.jfCollapse(fun);
+
+    e.appendChild(makeQueryElt());
 
     return e;
   };
